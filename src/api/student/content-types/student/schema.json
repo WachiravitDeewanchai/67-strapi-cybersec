@@ -27,6 +27,9 @@
     "Student": {
       "type": "uid",
       "targetField": "IDStudent"
+    },
+    "Email": {
+      "type": "email"
     }
   }
 }

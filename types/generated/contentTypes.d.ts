@@ -783,6 +783,60 @@ export interface PluginI18NLocale extends Schema.CollectionType {
   };
 }
 
+export interface ApiClassroomClassroom extends Schema.SingleType {
+  collectionName: 'classrooms';
+  info: {
+    singularName: 'classroom';
+    pluralName: 'classrooms';
+    displayName: 'Classroom';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    SubjectID: Attribute.String;
+    RNumber: Attribute.Enumeration<
+      [
+        'A 52-205',
+        'B 52-211',
+        'C 52-212',
+        'D 52-213',
+        'E 52-214',
+        'F 52-215',
+        'G 44-701',
+        'H 44-702',
+        'I 44-703',
+        'J 44-704',
+        'K 44-705',
+        'L 44-706',
+        'M 44-707',
+        'N 44-708',
+        'O 44-709'
+      ]
+    >;
+    IDStudent: Attribute.String;
+    IDTeach: Attribute.String;
+    IDClassroom: Attribute.String;
+    NameClass: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::classroom.classroom',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::classroom.classroom',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiRoomRoom extends Schema.SingleType {
   collectionName: 'rooms';
   info: {
@@ -842,6 +896,7 @@ export interface ApiStudentStudent extends Schema.SingleType {
     NicName: Attribute.String;
     IDStudent: Attribute.String;
     Student: Attribute.UID<'api::student.student', 'IDStudent'>;
+    Email: Attribute.Email;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -945,6 +1000,7 @@ declare module '@strapi/types' {
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'plugin::i18n.locale': PluginI18NLocale;
+      'api::classroom.classroom': ApiClassroomClassroom;
       'api::room.room': ApiRoomRoom;
       'api::student.student': ApiStudentStudent;
       'api::subject.subject': ApiSubjectSubject;
