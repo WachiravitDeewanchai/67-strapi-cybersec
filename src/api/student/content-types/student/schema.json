@@ -1,0 +1,39 @@
+{
+  "kind": "collectionType",
+  "collectionName": "students",
+  "info": {
+    "singularName": "student",
+    "pluralName": "students",
+    "displayName": "Student"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "FNameS": {
+      "type": "string",
+      "required": true
+    },
+    "LNameS": {
+      "type": "string",
+      "required": true
+    },
+    "NicName": {
+      "type": "string",
+      "required": true
+    },
+    "IDStudent": {
+      "type": "string",
+      "required": true
+    },
+    "Email": {
+      "type": "email",
+      "required": true
+    },
+    "Student": {
+      "type": "uid",
+      "targetField": "IDStudent"
+    }
+  }
+}
