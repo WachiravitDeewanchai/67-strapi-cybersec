@@ -29,3 +29,15 @@ services:
       POSTGRES_DB: ${DATABASE_NAME}
     ports:
       - 2345:5432
+    volumes:
+      - ./database/data:/var/lib/postgres/data
+
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    container_name: ced-admin
+    restart: unless-stopped
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD}
+    ports:
+      - 80:80

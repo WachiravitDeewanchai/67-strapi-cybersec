@@ -1,11 +1,10 @@
 {
-  "kind": "singleType",
+  "kind": "collectionType",
   "collectionName": "subjects",
   "info": {
     "singularName": "subject",
     "pluralName": "subjects",
-    "displayName": "Subject",
-    "description": ""
+    "displayName": "Subject"
   },
   "options": {
     "draftAndPublish": true
@@ -13,14 +12,17 @@
   "pluginOptions": {},
   "attributes": {
     "SubjectID": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "SubName": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "Subject": {
       "type": "uid",
-      "targetField": "SubjectID"
+      "targetField": "SubjectID",
+      "required": true
     }
   }
 }

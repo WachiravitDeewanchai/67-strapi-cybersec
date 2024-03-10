@@ -585,6 +585,53 @@ export interface PluginContentReleasesReleaseAction
   };
 }
 
+export interface PluginI18NLocale extends Schema.CollectionType {
+  collectionName: 'i18n_locale';
+  info: {
+    singularName: 'locale';
+    pluralName: 'locales';
+    collectionName: 'locales';
+    displayName: 'Locale';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  pluginOptions: {
+    'content-manager': {
+      visible: false;
+    };
+    'content-type-builder': {
+      visible: false;
+    };
+  };
+  attributes: {
+    name: Attribute.String &
+      Attribute.SetMinMax<
+        {
+          min: 1;
+          max: 50;
+        },
+        number
+      >;
+    code: Attribute.String & Attribute.Unique;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'plugin::i18n.locale',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'plugin::i18n.locale',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface PluginUsersPermissionsPermission
   extends Schema.CollectionType {
   collectionName: 'up_permissions';
@@ -736,66 +783,18 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
   };
 }
 
-export interface PluginI18NLocale extends Schema.CollectionType {
-  collectionName: 'i18n_locale';
-  info: {
-    singularName: 'locale';
-    pluralName: 'locales';
-    collectionName: 'locales';
-    displayName: 'Locale';
-    description: '';
-  };
-  options: {
-    draftAndPublish: false;
-  };
-  pluginOptions: {
-    'content-manager': {
-      visible: false;
-    };
-    'content-type-builder': {
-      visible: false;
-    };
-  };
-  attributes: {
-    name: Attribute.String &
-      Attribute.SetMinMax<
-        {
-          min: 1;
-          max: 50;
-        },
-        number
-      >;
-    code: Attribute.String & Attribute.Unique;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'plugin::i18n.locale',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'plugin::i18n.locale',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiClassroomClassroom extends Schema.SingleType {
+export interface ApiClassroomClassroom extends Schema.CollectionType {
   collectionName: 'classrooms';
   info: {
     singularName: 'classroom';
     pluralName: 'classrooms';
     displayName: 'Classroom';
-    description: '';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
-    SubjectID: Attribute.String;
+    SubjectID: Attribute.String & Attribute.Required;
     RNumber: Attribute.Enumeration<
       [
         'A 52-205',
@@ -814,11 +813,12 @@ export interface ApiClassroomClassroom extends Schema.SingleType {
         'N 44-708',
         'O 44-709'
       ]
-    >;
-    IDStudent: Attribute.String;
-    IDTeach: Attribute.String;
-    IDClassroom: Attribute.String;
-    NameClass: Attribute.String;
+    > &
+      Attribute.Required;
+    IDStudent: Attribute.String & Attribute.Required;
+    IDTeach: Attribute.String & Attribute.Required;
+    IDClassroom: Attribute.String & Attribute.Required;
+    NameClass: Attribute.String & Attribute.Required;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -837,13 +837,12 @@ export interface ApiClassroomClassroom extends Schema.SingleType {
   };
 }
 
-export interface ApiRoomRoom extends Schema.SingleType {
+export interface ApiRoomRoom extends Schema.CollectionType {
   collectionName: 'rooms';
   info: {
     singularName: 'room';
     pluralName: 'rooms';
     displayName: 'Room';
-    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -868,7 +867,7 @@ export interface ApiRoomRoom extends Schema.SingleType {
         'O 44-709'
       ]
     >;
-    TimeR: Attribute.Time & Attribute.Required & Attribute.Unique;
+    RTime: Attribute.Time;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -879,24 +878,23 @@ export interface ApiRoomRoom extends Schema.SingleType {
   };
 }
 
-export interface ApiStudentStudent extends Schema.SingleType {
+export interface ApiStudentStudent extends Schema.CollectionType {
   collectionName: 'students';
   info: {
     singularName: 'student';
     pluralName: 'students';
     displayName: 'Student';
-    description: '';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
-    FNameS: Attribute.String;
-    LNameS: Attribute.String;
-    NicName: Attribute.String;
-    IDStudent: Attribute.String;
+    FNameS: Attribute.String & Attribute.Required;
+    LNameS: Attribute.String & Attribute.Required;
+    NicName: Attribute.String & Attribute.Required;
+    IDStudent: Attribute.String & Attribute.Required;
+    Email: Attribute.Email & Attribute.Required;
     Student: Attribute.UID<'api::student.student', 'IDStudent'>;
-    Email: Attribute.Email;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -915,21 +913,21 @@ export interface ApiStudentStudent extends Schema.SingleType {
   };
 }
 
-export interface ApiSubjectSubject extends Schema.SingleType {
+export interface ApiSubjectSubject extends Schema.CollectionType {
   collectionName: 'subjects';
   info: {
     singularName: 'subject';
     pluralName: 'subjects';
     displayName: 'Subject';
-    description: '';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
-    SubjectID: Attribute.String;
-    SubName: Attribute.String;
-    Subject: Attribute.UID<'api::subject.subject', 'SubjectID'>;
+    SubjectID: Attribute.String & Attribute.Required;
+    SubName: Attribute.String & Attribute.Required;
+    Subject: Attribute.UID<'api::subject.subject', 'SubjectID'> &
+      Attribute.Required;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -948,22 +946,22 @@ export interface ApiSubjectSubject extends Schema.SingleType {
   };
 }
 
-export interface ApiTeacherTeacher extends Schema.SingleType {
+export interface ApiTeacherTeacher extends Schema.CollectionType {
   collectionName: 'teachers';
   info: {
     singularName: 'teacher';
     pluralName: 'teachers';
     displayName: 'Teacher';
-    description: '';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
-    TFName: Attribute.String;
-    TLName: Attribute.String;
-    IDTeach: Attribute.String & Attribute.Required & Attribute.Unique;
-    Teacher: Attribute.UID<'api::teacher.teacher', 'IDTeach'>;
+    TFName: Attribute.String & Attribute.Required;
+    TLName: Attribute.String & Attribute.Required;
+    IDTeach: Attribute.String & Attribute.Required;
+    Teacher: Attribute.UID<'api::teacher.teacher', 'IDTeach'> &
+      Attribute.Required;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -996,10 +994,10 @@ declare module '@strapi/types' {
       'plugin::upload.folder': PluginUploadFolder;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
+      'plugin::i18n.locale': PluginI18NLocale;
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
-      'plugin::i18n.locale': PluginI18NLocale;
       'api::classroom.classroom': ApiClassroomClassroom;
       'api::room.room': ApiRoomRoom;
       'api::student.student': ApiStudentStudent;

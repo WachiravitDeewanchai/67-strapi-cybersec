@@ -1,11 +1,10 @@
 {
-  "kind": "singleType",
+  "kind": "collectionType",
   "collectionName": "rooms",
   "info": {
     "singularName": "room",
     "pluralName": "rooms",
-    "displayName": "Room",
-    "description": ""
+    "displayName": "Room"
   },
   "options": {
     "draftAndPublish": true
@@ -32,10 +31,8 @@
         "O 44-709"
       ]
     },
-    "TimeR": {
-      "type": "time",
-      "required": true,
-      "unique": true
+    "RTime": {
+      "type": "time"
     }
   }
 }

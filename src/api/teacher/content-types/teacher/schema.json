@@ -1,11 +1,10 @@
 {
-  "kind": "singleType",
+  "kind": "collectionType",
   "collectionName": "teachers",
   "info": {
     "singularName": "teacher",
     "pluralName": "teachers",
-    "displayName": "Teacher",
-    "description": ""
+    "displayName": "Teacher"
   },
   "options": {
     "draftAndPublish": true
@@ -13,19 +12,21 @@
   "pluginOptions": {},
   "attributes": {
     "TFName": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "TLName": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "IDTeach": {
       "type": "string",
-      "required": true,
-      "unique": true
+      "required": true
     },
     "Teacher": {
       "type": "uid",
-      "targetField": "IDTeach"
+      "targetField": "IDTeach",
+      "required": true
     }
   }
 }

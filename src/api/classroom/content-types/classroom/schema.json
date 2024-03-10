@@ -1,11 +1,10 @@
 {
-  "kind": "singleType",
+  "kind": "collectionType",
   "collectionName": "classrooms",
   "info": {
     "singularName": "classroom",
     "pluralName": "classrooms",
-    "displayName": "Classroom",
-    "description": ""
+    "displayName": "Classroom"
   },
   "options": {
     "draftAndPublish": true
@@ -13,7 +12,8 @@
   "pluginOptions": {},
   "attributes": {
     "SubjectID": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "RNumber": {
       "type": "enumeration",
@@ -33,19 +33,24 @@
         "M 44-707",
         "N 44-708",
         "O 44-709"
-      ]
+      ],
+      "required": true
     },
     "IDStudent": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "IDTeach": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "IDClassroom": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "NameClass": {
-      "type": "string"
+      "type": "string",
+      "required": true
     }
   }
 }
