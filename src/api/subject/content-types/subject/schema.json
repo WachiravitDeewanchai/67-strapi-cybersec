@@ -19,7 +19,7 @@
       "type": "string",
       "required": true
     },
-    "Subject": {
+    "SubjectAid": {
       "type": "uid",
       "targetField": "SubjectID",
       "required": true
