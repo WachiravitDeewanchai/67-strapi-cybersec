@@ -4,7 +4,8 @@
   "info": {
     "singularName": "student",
     "pluralName": "students",
-    "displayName": "Student"
+    "displayName": "Student",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -31,9 +32,10 @@
       "type": "email",
       "required": true
     },
-    "Student": {
+    "StudentAid": {
       "type": "uid",
-      "targetField": "IDStudent"
+      "targetField": "IDStudent",
+      "required": true
     }
   }
 }

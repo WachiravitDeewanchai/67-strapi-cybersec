@@ -884,6 +884,7 @@ export interface ApiStudentStudent extends Schema.CollectionType {
     singularName: 'student';
     pluralName: 'students';
     displayName: 'Student';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -894,7 +895,8 @@ export interface ApiStudentStudent extends Schema.CollectionType {
     NicName: Attribute.String & Attribute.Required;
     IDStudent: Attribute.String & Attribute.Required;
     Email: Attribute.Email & Attribute.Required;
-    Student: Attribute.UID<'api::student.student', 'IDStudent'>;
+    StudentAid: Attribute.UID<'api::student.student', 'IDStudent'> &
+      Attribute.Required;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
