@@ -895,6 +895,7 @@ export interface ApiStudentStudent extends Schema.CollectionType {
     NicName: Attribute.String & Attribute.Required;
     IDStudent: Attribute.String & Attribute.Required;
     Email: Attribute.Email & Attribute.Required;
+    TelNumber: Attribute.String & Attribute.Required;
     StudentAid: Attribute.UID<'api::student.student', 'IDStudent'> &
       Attribute.Required;
     createdAt: Attribute.DateTime;
@@ -928,7 +929,7 @@ export interface ApiSubjectSubject extends Schema.CollectionType {
   attributes: {
     SubjectID: Attribute.String & Attribute.Required;
     SubName: Attribute.String & Attribute.Required;
-    Subject: Attribute.UID<'api::subject.subject', 'SubjectID'> &
+    SubjectAid: Attribute.UID<'api::subject.subject', 'SubjectID'> &
       Attribute.Required;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
@@ -962,7 +963,9 @@ export interface ApiTeacherTeacher extends Schema.CollectionType {
     TFName: Attribute.String & Attribute.Required;
     TLName: Attribute.String & Attribute.Required;
     IDTeach: Attribute.String & Attribute.Required;
-    Teacher: Attribute.UID<'api::teacher.teacher', 'IDTeach'> &
+    Email: Attribute.Email & Attribute.Required;
+    TelNumber: Attribute.String & Attribute.Required;
+    TeacherAid: Attribute.UID<'api::teacher.teacher', 'IDTeach'> &
       Attribute.Required;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;

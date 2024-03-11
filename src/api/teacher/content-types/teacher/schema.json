@@ -23,7 +23,15 @@
       "type": "string",
       "required": true
     },
-    "Teacher": {
+    "Email": {
+      "type": "email",
+      "required": true
+    },
+    "TelNumber": {
+      "type": "string",
+      "required": true
+    },
+    "TeacherAid": {
       "type": "uid",
       "targetField": "IDTeach",
       "required": true

@@ -1,0 +1,3 @@
+myapp.local {
+    reverse_proxy localhost:1337
+}

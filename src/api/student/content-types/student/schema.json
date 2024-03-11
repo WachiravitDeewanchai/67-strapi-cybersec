@@ -32,6 +32,10 @@
       "type": "email",
       "required": true
     },
+    "TelNumber": {
+      "type": "string",
+      "required": true
+    },
     "StudentAid": {
       "type": "uid",
       "targetField": "IDStudent",

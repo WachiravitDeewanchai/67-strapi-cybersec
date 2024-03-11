@@ -4,20 +4,20 @@ const cryptoKey = 'my-secret-key'
 
 module.exports = {
     async beforeCreate(event) {
-        if (event.params.data && event.params.data.IDStudent) {
-            let IDStudent = event.params.data.IDStudent;
-            IDStudent = IDStudent.padEnd(128, ' '); // เพิ่มช่องว่างเพื่อให้มีความยาวเท่ากับ 128
-            const hashedIDStudent = cryptoJs.AES.encrypt(IDStudent, cryptoKey).toString();
-            event.params.data.IDStudent = hashedIDStudent;
+        if (event.params.data && event.params.data.IDTeach) {
+            let IDTeach = event.params.data.IDTeach;
+            IDTeach = IDTeach.padEnd(128, ' '); // เพิ่มช่องว่างเพื่อให้มีความยาวเท่ากับ 128
+            const hashedIDTeach = cryptoJs.AES.encrypt(IDTeach, cryptoKey).toString();
+            event.params.data.IDTeach = hashedIDTeach;
         }
 
-        if (event.params.data && event.params.data.StudentAid) {
-            let StudentAid = event.params.data.StudentAid;
-            StudentAid = StudentAid.padEnd(128, ' '); // เพิ่มช่องว่างเพื่อให้มีความยาวเท่ากับ 128
-            const hashedStudentAid = cryptoJs.AES.encrypt(StudentAid, cryptoKey).toString();
-            event.params.data.StudentAid = hashedStudentAid;
+        if (event.params.data && event.params.data.TeacherAid) {
+            let TeacherAid = event.params.data.TeacherAid;
+            TeacherAid = TeacherAid.padEnd(128, ' '); // เพิ่มช่องว่างเพื่อให้มีความยาวเท่ากับ 128
+            const hashedTeacherAid = cryptoJs.AES.encrypt(TeacherAid, cryptoKey).toString();
+            event.params.data.TeacherAid = hashedTeacherAid;
         }
-
+        
         if (event.params.data && event.params.data.TelNumber) {
             let TelNumber = event.params.data.TelNumber;
             TelNumber = TelNumber.padEnd(128, ' '); // เพิ่มช่องว่างเพื่อให้มีความยาวเท่ากับ 128
@@ -33,16 +33,16 @@ module.exports = {
         }
     },
     async afterFindOne(event) {
-        if (event.result && event.result.IDStudent) {
-            let IDStudent = cryptoJs.AES.decrypt(event.result.IDStudent, cryptoKey).toString(cryptoJs.enc.Utf8);
-            IDStudent = IDStudent.trim(); // ตัดช่องว่างที่เหลือออก
-            event.result.IDStudent = IDStudent;
+        if (event.result && event.result.IDTeach) {
+            let IDTeach = cryptoJs.AES.decrypt(event.result.IDTeach, cryptoKey).toString(cryptoJs.enc.Utf8);
+            IDTeach = IDTeach.trim(); // ตัดช่องว่างที่เหลือออก
+            event.result.IDTeach = IDTeach;
         }
 
-        if (event.result && event.result.StudentAid) {
-            let StudentAid = cryptoJs.AES.decrypt(event.result.StudentAid, cryptoKey).toString(cryptoJs.enc.Utf8);
-            StudentAid = StudentAid.trim(); // ตัดช่องว่างที่เหลือออก
-            event.result.StudentAid = StudentAid;
+        if (event.result && event.result.TeacherAid) {
+            let TeacherAid = cryptoJs.AES.decrypt(event.result.TeacherAid, cryptoKey).toString(cryptoJs.enc.Utf8);
+            TeacherAid = TeacherAid.trim(); // ตัดช่องว่างที่เหลือออก
+            event.result.TeacherAid = TeacherAid;
         }
 
         if (event.result && event.result.TelNumber) {
@@ -59,16 +59,16 @@ module.exports = {
     },
     async afterFindMany(event) {
         event.result.map(result => {
-            if (result && result.IDStudent) {
-                let IDStudent = cryptoJs.AES.decrypt(result.IDStudent, cryptoKey).toString(cryptoJs.enc.Utf8);
-                IDStudent = IDStudent.trim(); // ตัดช่องว่างที่เหลือออก
-                result.IDStudent = IDStudent;
+            if (result && result.IDTeach) {
+                let IDTeach = cryptoJs.AES.decrypt(result.IDTeach, cryptoKey).toString(cryptoJs.enc.Utf8);
+                IDTeach = IDTeach.trim(); // ตัดช่องว่างที่เหลือออก
+                result.IDTeach = IDTeach;
             }
 
-            if (result && result.StudentAid) {
-                let StudentAid = cryptoJs.AES.decrypt(result.StudentAid, cryptoKey).toString(cryptoJs.enc.Utf8);
-                StudentAid = StudentAid.trim(); // ตัดช่องว่างที่เหลือออก
-                result.StudentAid = StudentAid;
+            if (result && result.TeacherAid) {
+                let TeacherAid = cryptoJs.AES.decrypt(result.TeacherAid, cryptoKey).toString(cryptoJs.enc.Utf8);
+                TeacherAid = TeacherAid.trim(); // ตัดช่องว่างที่เหลือออก
+                result.TeacherAid = TeacherAid;
             }
 
             if (result && result.TelNumber) {
